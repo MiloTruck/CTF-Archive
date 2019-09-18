@@ -1,0 +1,8 @@
+Standard ret2libc buffer overflow.
+Leak puts GOT address using puts.
+Calculate libc base using leaked address - libc puts address.
+Calculate system and /bin/sh address using libc base.
+
+Call system(/bin/sh) - Remember RSI has to be set to 0 before calling system.
+
+Flag: TIMCTF{d3v_fd_i5_sn3aky_backd00r}

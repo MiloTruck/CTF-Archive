@@ -1,0 +1,4 @@
+Probably an unintended solution. 
+STRINGS the binary and the flag comes out
+
+Flag: TIMCTF{1_am_th3_c00kie_m0nsta}

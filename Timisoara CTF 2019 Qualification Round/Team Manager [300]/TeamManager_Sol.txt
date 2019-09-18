@@ -1,0 +1,20 @@
+LEAK HEAP ADDRESS
+Address on the heap can be leaked through a double free() vulnerability/bug. Free() a chunk twice causes a heap address to be stored in the areas for "reversing and exploitation" and "crypto". The heap address can be leaked thorugh viewing the team.
+
+LEAK PRINTF
+The comments of each chunk are vulnerable to a heap overflow which can overflow the next chunk. Using the heap overflow, overwrite the pointer to the "comments" in the second chunk with printf GOT address. The address can be leaked by viewing the second player.
+
+CALCULATE LIBC BASE
+Standard ret2libc procedure. Base is calculated through: printf address - printf offset, where printf offset is the address of printf in libc. With libc base value, the address of the __free_hook pointer and system can be calculated.
+
+OVERWRITE __FREE_HOOK POINTER WITH SYSTEM
+Overwrite the comments pointer in the second chunk with the address of system. Overflow the first chunk and overwrite the pointer in the second chunk using edit.
+This causes calling free() to call system() instead.
+
+OVERWRITE HEAP ADDRESS WITH /BIN/SH
+Overwrite the heap address with "/bin/sh\x00" (0x0068732f6e69622f). When free() is called on this address, which points to chunk 1, system(/bin/sh\x00) is called instead.
+
+CALL FREE() FOR SHELL
+Call free on the player 1.
+
+Flag: TIMCTF{Heap_overfl0ws_are_really_B4D}
