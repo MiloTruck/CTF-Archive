@@ -1,11 +1,11 @@
 # Bof-server [100]
 **Category:** Binary Exploitation 
 
-Today kids we learn how to write exploits for super-secure software: bof-server!
+> Today kids we learn how to write exploits for super-secure software: bof-server!
 
-nc 89.38.208.144 11112
+> nc 89.38.208.144 11112
 
-(non-standard flag format)
+> (non-standard flag format)
 
 ## Write-up
 Standard shellcode pwn challenge.
