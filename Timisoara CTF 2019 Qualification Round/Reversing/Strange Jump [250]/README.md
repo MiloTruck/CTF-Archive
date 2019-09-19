@@ -50,7 +50,7 @@ if (ciphertext_length == final_length){
 }
 ```
 
-The function is similar to the reversing challenge **Math**, but without a key. The flag can be obtained by replicating the function above and brute-forcing for the flag. This method tries every possible combination of 3 characters in the flag, which can be done in reasonable time.
+The function is similar to the reversing challenge **Math**, but without a key. The flag can be obtained by replicating the function above and brute-forcing for the flag. This method tries every possible combination for every block of 3 characters in the flag, which can be done in reasonable time.
 
 **Flag:** TIMCTF{deC3pt1ve_ExceP0ti0n_h4ndLer}
 
