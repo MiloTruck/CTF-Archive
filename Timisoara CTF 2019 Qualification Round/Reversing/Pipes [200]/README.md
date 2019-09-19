@@ -2,7 +2,7 @@
 **Category:** Reversing 
 
 ## Write-up
-As usual, first we decompile the binary using Ghidra for analysis. The code below is the important parts of the decompilation:
+As usual, first we decompile the binary using Ghidra for analysis. The code below are the important parts of the decompilation:
 
 **rol** function:
 ```c
