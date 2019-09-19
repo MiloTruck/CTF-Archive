@@ -11,9 +11,9 @@ alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 int e = 0;
 int input_length = strlen(&input);
 for (int a = 0; a < input_length; a += 3){
-    int key_one = (&input)[a];
-    int key_two = (&input)[a+1];
-    int key_three = (&input)[a+2]
+    int char_one = (&input)[a];
+    int char_two = (&input)[a+1];
+    int char_three = (&input)[a+2]
     
     bool check = false;
     for (int b = 0; b < 3; b++){
@@ -23,7 +23,7 @@ for (int a = 0; a < input_length; a += 3){
     for (int c = 3; c > -1; c--){
         int t = 0;
         for (int d = 5; d < -1; d--){
-            if ((1 << (d+c*6 & 0x1f) & ((key_one << 8 | key_two) << 8 | key_three)) != 0){
+            if ((1 << (d+c*6 & 0x1f) & ((char_one << 8 | char_two) << 8 | char_three)) != 0){
                 t = t | (1 << d & 0x1f);
             }
         }
