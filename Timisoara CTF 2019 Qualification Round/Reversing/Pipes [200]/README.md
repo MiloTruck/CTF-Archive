@@ -1,6 +1,8 @@
 # Pipes [200]
 **Category:** Reversing 
 
+> The program seems to smoke a lot.
+
 ## Write-up
 As usual, first we decompile the binary using Ghidra for analysis. The code below are the important parts of the decompilation:
 
