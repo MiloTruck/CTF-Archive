@@ -18,6 +18,21 @@ Wrong key!
 The binary seems to ask for a key, which can be assumed to be the flag. When ```aaaa``` is input as the flag, 
 it checks if the flag is correct and outputs ```Wrong key!``` if the flag is incorrect.
 
+Next, we analyze the source code:
+
+Part of the code in **main**:
+```c
+char key[101]={},
+         stack[101]={},
+         input[1337]={},
+         code1[] = "2u4mmimmiup2u6mimimimup2u7mmimmup2u6mmimmiup2u7mmmimup2u4mmmup2u7mmimmup2u6mimmmup2u6mmimmiup2u4mmmup2u6mimmimiup2u6mmimmiup2u7mimmmiup2u5mup",
+         code2[] = "2u5mmimimup2u6mmimmiup2u7mmmimup2u6mimmmiup2u6mmimimup2u7mimmmiup2u6mimmmiup2u6mimimimup2u6mmimimiup2u5mup",
+         code3[] = "0r2u6mmr2u6mmimmiu0r2u5mimir2u5mmmu0r2u5mimr2u4mmmiu0r2u5mmir2u5mmmimiu0r2u5mmr2u4mimmiu0r2u4mimir2u7mimu0r2u4mimr2u6mmmmu0r2u4mmir2u4mimimimu0r2u4mmr2u5mimimimu0r2u7mir2u6mmimimu0r2u7mr2u5mimmmu0r2u6mir2u5mmmimu0r2u6mr2u5mmmiu0r2u5mir2u4mimimu0r2u5mr2u5mmimmiu9r2u5mmimu8r2u6mimmimu7r2u5mimmmu6r2u6mmimimiu5r2u7mmmmiu4r2u7mmimimiu3r2u5mmmmu2r2u5mmmimu1r2u4mmmmu0r2u4mimmmu",
+         code4[] = "2u5mmimimiup2u7mmmimup2u6mimimimiup2u6mimimimup2u6mmimimiup2u4mmmup2u6mimmimiup2u6mmimmiup2u7mimmmiup2u4mmmiup2u5mup",
+         code5[] = "2u4mmimimup2u6mimimmup2u6mmmmiup2u6mmimimiup2u4mmmup2u7mmimup2u4mmmup";
+ ```
+As seen in the **main** function, The binary works by writing special lines of code, named ```code1[]``` to ```code5[]```, and passing them through the **vmstep** function with buffers to be written to, such as `stack` or `key`. We can see that `code1[]`, `code2[]`, `code4[]` and `code5[]` are used to outputs statements after running the binary. 
+
  **vmstep** function:
  ```c
  int vmstep(char op,char* stack){
@@ -76,16 +91,16 @@ it checks if the flag is correct and outputs ```Wrong key!``` if the flag is inc
 }
 ```
 
-Part of the code in **main**:
+There are 4 special variables that are used in **vmstep** and **vmexec**:
+* `ip` represents the instruction pointer, basically a variable to count the instruction number.
+* `sp` is the stack pointer, which is used to overwrite/change values in the stack
+* `ax` is the AX register, used to perform instructions such as changing the value of `sp` or the values in the stack
+* `stack` represents the buffer that is passed into the functions, namely the `key` or `stack` in **main**. Memory in these buffers will be changed.  
+
+Each letter or character the code represents an instruction that changes one of these 4 special variables in some way. For example, `p` is used to execute `printf("%c", stack[sp])`.
+
+Part of code in **main**:
 ```c
-char key[101]={},
-         stack[101]={},
-         input[1337]={},
-         code1[] = "2u4mmimmiup2u6mimimimup2u7mmimmup2u6mmimmiup2u7mmmimup2u4mmmup2u7mmimmup2u6mimmmup2u6mmimmiup2u4mmmup2u6mimmimiup2u6mmimmiup2u7mimmmiup2u5mup",
-         code2[] = "2u5mmimimup2u6mmimmiup2u7mmmimup2u6mimmmiup2u6mmimimup2u7mimmmiup2u6mimmmiup2u6mimimimup2u6mmimimiup2u5mup",
-         code3[] = "0r2u6mmr2u6mmimmiu0r2u5mimir2u5mmmu0r2u5mimr2u4mmmiu0r2u5mmir2u5mmmimiu0r2u5mmr2u4mimmiu0r2u4mimir2u7mimu0r2u4mimr2u6mmmmu0r2u4mmir2u4mimimimu0r2u4mmr2u5mimimimu0r2u7mir2u6mmimimu0r2u7mr2u5mimmmu0r2u6mir2u5mmmimu0r2u6mr2u5mmmiu0r2u5mir2u4mimimu0r2u5mr2u5mmimmiu9r2u5mmimu8r2u6mimmimu7r2u5mimmmu6r2u6mmimimiu5r2u7mmmmiu4r2u7mmimimiu3r2u5mmmmu2r2u5mmmimu1r2u4mmmmu0r2u4mimmmu",
-         code4[] = "2u5mmimimiup2u7mmmimup2u6mimimimiup2u6mimimimup2u6mmimimiup2u4mmmup2u6mimmimiup2u6mmimmiup2u7mimmmiup2u4mmmiup2u5mup",
-         code5[] = "2u4mmimimup2u6mimimmup2u6mmmmiup2u6mmimimiup2u4mmmup2u7mmimup2u4mmmup";
     int i;
     vmexec(code1,stack);
     scanf("%1337s", &input);
@@ -101,13 +116,9 @@ char key[101]={},
             break;
         }
     }
- ```
- 
- The binary works by writing special lines of code, named ```code1[]``` to ```code5[]```, and passing them 
- through the **vmstep** function with variables to be written to, such as `stack` or `key`. Each letter or character the code represents 
- an instruction that will be executed in **vmexec**. Here are some of the important instructions in **vmexec**:
- * `p` executes `printf("%c",stack[sp]);`
- 
+```
+
+In the above code, the binary stores our input in `key`. `vmexec(code3,stack);` then changes the values in the `stack`. The binary proceeds to check if `key[i]` is equal to `stack[i] + i`. As `key` is the flag, we can assume that `stack[i] + i` represents each individual character code in the flag after `vmexec(code3,stack);` is run.
  
 
 
