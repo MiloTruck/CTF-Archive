@@ -202,8 +202,5 @@ int main(){
 }
 ```
  
-
-
-
 **Flag:** HATS{vm_r3_15_fun_r19h7?}
 
