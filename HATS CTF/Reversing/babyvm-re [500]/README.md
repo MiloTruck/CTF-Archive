@@ -30,7 +30,7 @@ char key[101]={},
          code4[] = "2u5mmimimiup2u7mmmimup2u6mimimimiup2u6mimimimup2u6mmimimiup2u4mmmup2u6mimmimiup2u6mmimmiup2u7mimmmiup2u4mmmiup2u5mup",
          code5[] = "2u4mmimimup2u6mimimmup2u6mmmmiup2u6mmimimiup2u4mmmup2u7mmimup2u4mmmup";
  ```
-As seen in the **main** function, The binary works by writing special lines of code, named ```code1[]``` to ```code5[]```, and passing them through the **vmstep** function with buffers to be written to, such as `stack` or `key`. We can see that `code1[]`, `code2[]`, `code4[]` and `code5[]` are used to outputs statements after running the binary. 
+As seen in the **main** function, The binary works by writing special lines of code, named ```code1[]``` to ```code5[]```, and passing them through the **vmstep** function with buffers to be written to, such as `stack` or `key`. We can see that `code1[]`, `code2[]`, `code4[]` and `code5[]` are used to output statements after running the binary. 
 
  **vmstep** function:
  ```c
@@ -96,7 +96,7 @@ There are 4 special variables that are used in **vmstep** and **vmexec**:
 * `ax` is the AX register, used to perform instructions such as changing the value of `sp` or the values in the stack
 * `stack` represents the buffer that is passed into the functions, namely the `key` or `stack` in **main**. Memory in these buffers will be changed.  
 
-Each letter or character the code represents an instruction that changes one of these 4 special variables in some way. For example, `p` is used to execute `printf("%c", stack[sp])`.
+Each letter or character in the codes represents an instruction that changes one of these 4 variables in some way. For example, `p` is used to execute `printf("%c", stack[sp])`.
 
 Part of the code in **main**:
 ```c
