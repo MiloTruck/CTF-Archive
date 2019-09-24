@@ -15,8 +15,7 @@ Verifying
 Wrong key!
 ```
 
-The binary seems to ask for a key, which can be assumed to be the flag. When ```aaaa``` is input as the flag, 
-it checks if the flag is correct and outputs ```Wrong key!``` if the flag is incorrect.
+The binary seems to ask for a key, which can be assumed to be the flag. It then checks if the key is correct and outputs ```Wrong key!``` if the key is incorrect.
 
 Next, we analyze the source code:
 
