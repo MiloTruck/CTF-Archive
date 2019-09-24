@@ -60,13 +60,11 @@ int vmstep(char op,char* stack){
 void vmexec(char* code, char* stack){
     ip = 0;
     while(1){
+        //printf("code : %c\nip : %d\n",code[ip],ip); //remove for actual chal
         if(vmstep(code[ip],stack) == 0){
             break;
         }
-        if (code[ip] == "p"){
-            printf("code : %c\nip : %d\n",code[ip],ip); //remove for actual chal
-            printf("ax : %d , stack[%d] = %x\n",ax,sp,stack[sp]);
-        }
+        //printf("ax : %d , stack[%d] = %x\n",ax,sp,stack[sp]);
         ++ip;
     }
 }
@@ -81,9 +79,9 @@ int main(){
          code4[] = "2u5mmimimiup2u7mmmimup2u6mimimimiup2u6mimimimup2u6mmimimiup2u4mmmup2u6mimmimiup2u6mmimmiup2u7mimmmiup2u4mmmiup2u5mup",
          code5[] = "2u4mmimimup2u6mimimmup2u6mmmmiup2u6mmimimiup2u4mmmup2u7mmimup2u4mmmup";
     int i;
-    vmexec(code1,stack); //prints "Enter the key"
+    vmexec(code1,stack);
     scanf("%1337s", &input);
-    vmexec(code2,stack); //prints "Verifying"
+    vmexec(code2,stack);
     vmexec(input,key);
     vmexec(code3,stack);
     for(i=0;i<100;++i){
@@ -96,7 +94,7 @@ int main(){
         }
     }
     if(i != -1){
-        vmexec(code4,stack); //prints "Wrong key!"
+        vmexec(code4,stack);
         return 0;
     }
     vmexec(code5,stack);
