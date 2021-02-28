@@ -1,0 +1,15 @@
+var onSubmit = function (token) {
+	var form = CTFd.lib.$('#register-submit').closest('form');
+	CTFd.lib.$('#register-submit').closest('form').submit();
+};
+
+var onloadCallback = function () {
+	var targets = ['/register'];
+	if (targets.includes(window.location.pathname)) {
+		CTFd.lib.$(document.forms[0]).find(':submit').attr('id', 'register-submit');
+		grecaptcha.render('register-submit', {
+			'sitekey': "6LcQsq4UAAAAANMoNqPRyCLJXymW2_0Ol9JDI03h",
+			'callback': onSubmit
+		});
+	}
+};

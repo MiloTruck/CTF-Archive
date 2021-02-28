@@ -1,0 +1,15 @@
+foremost pdf get zip file, password is dso
+
+unzip get soar (elf file)
+flag is printed when time is 11:11
+file named "Scholarship for Aspiring Researchers (SOAR).pdf" must be present in dir, get from https://www.dso.org.sg/Media/Default/pdf/SOAR%20Insert.pdf
+
+in gdb
+b *main+323
+set $eax=11
+
+b *main+1110
+x/s $rdi
+
+b *main+1243
+set $eax=11

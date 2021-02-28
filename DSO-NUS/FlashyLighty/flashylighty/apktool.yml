@@ -1,0 +1,32 @@
+!!brut.androlib.meta.MetaInfo
+apkFileName: flashylighty.apk
+compressionType: false
+doNotCompress:
+- resources.arsc
+- png
+- lib/arm64-v8a/libflashylighty.so
+- lib/arm64-v8a/libtool-checker.so
+- lib/armeabi-v7a/libflashylighty.so
+- lib/armeabi-v7a/libtool-checker.so
+- lib/x86/libtool-checker.so
+- lib/x86/libflashylighty.so
+- lib/x86_64/libtool-checker.so
+- lib/x86_64/libflashylighty.so
+isFrameworkApk: false
+packageInfo:
+  forcedPackageId: '127'
+  renameManifestPackage: null
+sdkInfo:
+  minSdkVersion: '26'
+  targetSdkVersion: '30'
+sharedLibrary: false
+sparseResources: false
+unknownFiles: {}
+usesFramework:
+  ids:
+  - 1
+  tag: null
+version: 2.5.0
+versionInfo:
+  versionCode: '1'
+  versionName: '1.0'
