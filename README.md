@@ -1,10 +1,3 @@
 # CTF Archive 
 
-**All CTFs and Wargames included in this archive:**  
-* Timisoara CTF 2019 Qualification Round
-* HATS CTF
-
-
-**To be included:**  
-* ROP Emporium
-* HackCTF (j0n9hyun)
+My challenge file storage for writeups posted on [my website](https://milotruck.github.io/) 
